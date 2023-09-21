@@ -8,15 +8,19 @@ import { User } from 'src/app/interfaces/user.interface';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users: any[] = [];
+  users: User[] = [];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getUsers().subscribe((data: any) => {
-      this.users = data;
+      this.users = data as User[];
 
       console.log('users: ', this.users);
     });
+  }
+
+  openUserDetails(user: User): void {
+    console.log('openUserDetails() clicked', user);
   }
 }

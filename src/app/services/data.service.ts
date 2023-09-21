@@ -13,4 +13,8 @@ export class DataService {
   public getUsers(): Observable<Object> {
     return this.httpClient.get(this.USERS_REST_API);
   }
+
+  public getUser(userId: number) {
+    return this.httpClient.get(this.USERS_REST_API + '/' + userId);
+  }
 }

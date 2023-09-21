@@ -1,3 +1,5 @@
+<h4>User List editing application</h4>
+
 <div class="user-list-container">
     <h3>Users</h3>
     <div class="user-row user-header-row">
@@ -7,7 +9,7 @@
         <div class="user-info-column email">Email</div>
         <div class="user-info-column user-type">Type</div>
     </div>
-    <div class="user-row link" *ngFor="let user of users" (click)="openUserDetails(user)">
+    <div class="user-row link" *ngFor="let user of users" routerLink="/user/{{user.id}}">
         <div class="user-info-column user-name">{{ user.userName }}</div>
         <div class="user-info-column first-name">{{ user.firstName }}</div>
         <div class="user-info-column last-name">{{ user.lastName }}</div>
@@ -15,5 +17,3 @@
         <div class="user-info-column user-type">{{ user.userType }}</div>
     </div>
 </div>
-
-<app-user-view *ngIf="users.length" [user]="users[0]"></app-user-view>

@@ -19,8 +19,4 @@ export class UserListComponent implements OnInit {
       console.log('users: ', this.users);
     });
   }
-
-  openUserDetails(user: User): void {
-    console.log('openUserDetails() clicked', user);
-  }
 }

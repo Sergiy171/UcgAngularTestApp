@@ -1,10 +1,47 @@
 <h2 class="link" routerLink="/home">Home</h2>
 
 <h3>User Details</h3>
-<div class="user-row">
-    <div class="user-info-column user-name">{{ user?.userName }}</div>
-    <div class="user-info-column first-name">{{ user?.firstName }}</div>
-    <div class="user-info-column last-name">{{ user?.lastName }}</div>
-    <div class="user-info-column email">{{ user?.email }}</div>
-    <div class="user-info-column user-type">{{ user?.userType }}</div>
-</div>
+
+<form #myForm="ngForm" *ngIf="user" (ngSubmit)="onSubmitTemplate()">
+    <p>
+        <label>Username:</label>
+        <input type="text" name="userName"
+            [(ngModel)]="user.userName" required>
+    </p>
+    <p>
+        <label>First Name:</label>
+        <input type="text" name="firstName"
+            [(ngModel)]="user.firstName" required>
+    </p>
+    <p>
+        <label>Last Name:</label>
+        <input type="text" name="lastName"
+            [(ngModel)]="user.lastName" required>
+    </p>
+    
+    <p>
+        <label>Email:</label>
+        <input type="email" name="email" email
+            [(ngModel)]="user.email" required>
+    </p>
+    <p>
+        <label>Password:</label>
+        <input type="password" name="password"
+            [(ngModel)]="user.password" required>
+    </p>
+    <!-- <p>
+        <label>Confirm password:</label>
+        <input type="password" name="confirmPassword"
+            [(ngModel)]="user.confirmPassword" required>
+    </p> -->
+    <p>
+        <label>User type:</label>
+        <select>  
+            <option disabled>Select User Type</option>
+            <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>  
+        </select>  
+    </p>
+    <p>
+        <button type="submit" [disabled]="!myForm.valid">Submit</button>
+    </p>
+</form>

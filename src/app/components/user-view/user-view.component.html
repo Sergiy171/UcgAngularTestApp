@@ -36,7 +36,7 @@
     </p> -->
     <p>
         <label>User type:</label>
-        <select>  
+        <select name="userType" [(ngModel)]="user.userType">  
             <option disabled>Select User Type</option>
             <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>  
         </select>  
@@ -45,3 +45,5 @@
         <button type="submit" [disabled]="!myForm.valid">Submit</button>
     </p>
 </form>
+
+<button class="cursor-pointer" (click)="deleteUser()">Delete user</button>

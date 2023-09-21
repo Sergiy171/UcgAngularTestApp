@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'home', component: UserListComponent },
   { path: 'user/:userId', component: UserViewComponent },
   { path: 'forbidden', component: ForbiddenComponent },
+  { path: 'pageNotFound', component: PageNotFoundComponent },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 

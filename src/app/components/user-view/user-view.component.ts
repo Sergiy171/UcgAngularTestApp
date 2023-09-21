@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserType } from 'src/app/enums/user-type';
 import { User } from 'src/app/interfaces/user.interface';
 import { DataService } from 'src/app/services/data.service';
@@ -16,7 +16,8 @@ export class UserViewComponent implements OnInit {
   
   constructor(
     private dataService: DataService, 
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,9 +28,36 @@ export class UserViewComponent implements OnInit {
         this.user = data as User;
       });
     }
+    else {
+      this.user = {
+        id: this.dataService.randomIntFromInterval(1, 10000),
+        userName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        userType: UserType.Driver
+      };
+    }
   }
 
   onSubmitTemplate() {
-    console.log('onSubmitTemplate() clicked', this.user);
+    let routeUserId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId') || '');
+
+    if (!isNaN(routeUserId)) {
+      this.dataService.updateUser(this.user as User).subscribe((data: any) => {
+        this.router.navigateByUrl('/home');
+      });
+    } else {
+      this.dataService.addUser(this.user as User).subscribe((data: any) => {
+        this.router.navigateByUrl('/home');
+      });
+    }
+  }
+
+  deleteUser() {
+    this.dataService.deleteUser(this.user?.id || 1).subscribe((data: any) => {
+      this.router.navigateByUrl('/home');
+    });
   }
 }

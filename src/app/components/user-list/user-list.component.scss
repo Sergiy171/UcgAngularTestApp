@@ -1,0 +1,16 @@
+.user-list-container {
+    .user-row {
+        width: 100%;
+
+        &.user-header-row {
+            border: 1px solid blue;
+        }
+
+        .user-info-column {
+            display: inline-block;
+            position: relative;
+            max-width: 20%;
+            padding-right: 10px;
+        }
+    }
+}

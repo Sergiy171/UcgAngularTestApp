@@ -1,1 +1,19 @@
-<p>user-list works!</p>
+<div class="user-list-container">
+    <h3>Users</h3>
+    <div class="user-row user-header-row">
+        <div class="user-info-column user-name">Username</div>
+        <div class="user-info-column first-name">First Name</div>
+        <div class="user-info-column last-name">Last Name</div>
+        <div class="user-info-column email">Email</div>
+        <div class="user-info-column type">Type</div>
+    </div>
+    <div class="user-row" *ngFor="let user of users">
+        <div class="user-info-column user-name">{{ user.userName }}</div>
+        <div class="user-info-column first-name">{{ user.userName }}</div>
+        <div class="user-info-column last-name">{{ user.userName }}</div>
+        <div class="user-info-column email">{{ user.userName }}</div>
+        <div class="user-info-column type">{{ user.userName }}</div>
+    </div>
+</div>
+
+<app-user-view></app-user-view>

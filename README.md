@@ -1,3 +1,18 @@
+Project initialization process
+
+Start database server
+
+## Mocking Server
+
+Application is using json-server as a quick Server mocking service. To run it on your local machine you need to install Server globally using `npm install -g json-server` and then run `npm server`. Then it is working based on a file from the source code with server/database.json path.
+
+## client-side application
+
+After running json-server you need to start your web application. Use "ng serve" command in the command prompt from the core app folder for this purpose.
+
+
+
+
 # UcgAngularTestApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.

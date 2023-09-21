@@ -1,0 +1,59 @@
+{
+    "users": [
+        {
+            "id": 1001,
+            "userName": "AndrewCullin",
+            "firstName": "Andrew",
+            "lastName": "Verger",
+            "email": "andrew.verger@gmail.com",
+            "password": "YZAXMLVP4bRq",
+            "userType": "Admin"
+        },
+        {
+            "id": 1002,
+            "userName": "SusetteCullin",
+            "firstName": "Susette",
+            "lastName": "Cullin",
+            "email": "susette.cullin@gmail.com",
+            "password": "zZx6kAzX473C",
+            "userType": "Driver"
+        },
+        {
+            "id": 1003,
+            "userName": "BernardSargent",
+            "firstName": "Bernard",
+            "lastName": "Sargent",
+            "email": "bernardsargent@gmail.com",
+            "password": "d86QPh9gbMEF",
+            "userType": "Driver"
+        },
+        {
+            "id": 1007,
+            "userName": "AndreaBurris",
+            "firstName": "Andrea",
+            "lastName": "Burris",
+            "email": "andreaburris@gmail.com",
+            "password": "XNKuuAnrXqYc",
+            "userType": "Admin"
+        },
+        {
+            "id": 1010,
+            "userName": "JaimeBritt",
+            "firstName": "Jaime",
+            "lastName": "Britt",
+            "email": "jaimebritt@gmail.com",
+            "password": "sGGJga8FLrtH",
+            "userType": "Driver"
+        }
+    ],
+    "userTypes": [
+        {
+            "id": 1,
+            "name": "Admin"
+        },
+        {
+            "id": 2,
+            "name": "Driver"
+        }
+    ]
+}

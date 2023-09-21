@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserViewComponent } from './components/user-view/user-view.component';
+import { PageNotFoundComponent } from './components/falback/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    UserViewComponent
+    UserViewComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

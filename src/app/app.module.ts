@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserViewComponent } from './components/user-view/user-view.component';
 import { PageNotFoundComponent } from './components/falback/page-not-found/page-not-found.component';
 import { ForbiddenComponent } from './components/falback/forbidden/forbidden.component';
+import { ErrorInterceptor } from './http-interceptors/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { ForbiddenComponent } from './components/falback/forbidden/forbidden.com
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

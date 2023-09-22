@@ -58,9 +58,8 @@
             User type is invalid.
         </div>
     </div>
-    <p>
-        <button type="submit" [disabled]="!userForm.valid">Submit</button>
-    </p>
+    <div class="form-actions">
+        <button class="button success-button submit-button" type="submit" [disabled]="!userForm.valid">{{ isEditingMode() ? 'Update user' : 'Add user' }}</button>
+        <button class="button error-button delete-button" *ngIf="isEditingMode()" (click)="deleteUser()">Delete user</button>
+    </div>
 </form>
-
-<button class="cursor-pointer" (click)="deleteUser()">Delete user</button>

@@ -1,3 +1,20 @@
+.button {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+
+    &.success-button {
+        background-color: dodgerblue;
+        color: white;
+    }
+    
+    &.error-button {
+        background-color: crimson;
+        color: white;
+    }
+}
+
 .link {
 
     &:hover {

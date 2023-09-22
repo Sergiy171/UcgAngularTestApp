@@ -80,7 +80,7 @@ export class UserViewComponent implements OnInit {
     }, 5000);
   }
 
-  private isEditingMode(): boolean {
+  isEditingMode(): boolean {
     let userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId') || '');
 
     return !isNaN(userId);

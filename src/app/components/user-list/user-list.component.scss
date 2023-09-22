@@ -4,6 +4,10 @@ $table-row-border-color: white;
 
 .user-list-container {
 
+    .create-user-button {
+        margin-bottom: 10px;
+    }
+
     .user-row {
         border: 1px solid $table-row-border-color;
         border-radius: 5px;

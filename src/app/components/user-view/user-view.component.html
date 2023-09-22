@@ -1,13 +1,18 @@
 <h2 class="link" routerLink="/home">Home</h2>
 
 <h3>User Details</h3>
-
+<div class="response-message-container" [hidden]="!responseMessage.length">
+    <span class="response-message" *ngIf="responseMessage.length">{{responseMessage}}</span>
+</div>
 <form #userForm="ngForm" *ngIf="user" (ngSubmit)="onSubmitTemplate()">
     <div class="form-group">
         <label>Username:</label>
         <input type="text" name="userName" #username="ngModel" [(ngModel)]="user.userName" required>
         <div *ngIf="username.invalid && (username.dirty || username.touched)" class="form-error form-username-error"> 
-            Username is invalid. Can not be empty and should be unique.
+            Username is invalid. Can not be empty.
+        </div>
+        <div *ngIf="(username.dirty || username.touched) && checkUniqueUsername()" class="form-error form-username-error"> 
+            Username is invalid. Should be unique.
         </div>
     </div>
     <div>

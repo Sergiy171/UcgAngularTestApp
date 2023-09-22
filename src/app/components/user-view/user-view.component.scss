@@ -1,3 +1,15 @@
 .form-error {
     color: brown;
 }
+
+.response-message-container {
+    display: inline-block;
+    min-height: 30px;
+    
+    .response-message {
+        color: white;
+        background-color: green;
+        padding: 5px;
+        border-radius: 3px;
+    }
+}

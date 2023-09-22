@@ -15,9 +15,10 @@ export class UserViewComponent implements OnInit {
 
   userTypes = Object.values(UserType);
   dbUserNames: string[] = [];
-  
+  responseMessage: string = '';
+
   constructor(
-    private dataService: DataService, 
+    private dataService: DataService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -28,7 +29,7 @@ export class UserViewComponent implements OnInit {
     this.dataService.getUsers().subscribe((data: any) => {
       this.dbUserNames = (data as User[]).map((user) => user.userName);
     });
-    
+
     if (!isNaN(userId)) {
       this.dataService.getUser(userId).subscribe((data: any) => {
         this.user = data as User;
@@ -52,7 +53,7 @@ export class UserViewComponent implements OnInit {
 
     if (!isNaN(routeUserId)) {
       this.dataService.updateUser(this.user as User).subscribe((data: any) => {
-        this.router.navigateByUrl('/home');
+        this.displaySuccessMessage();
       });
     } else {
       this.dataService.addUser(this.user as User).subscribe((data: any) => {
@@ -69,6 +70,14 @@ export class UserViewComponent implements OnInit {
 
   checkUniqueUsername(): boolean {
     return !this.isEditingMode() && this.dbUserNames.includes(this.user?.userName || '');
+  }
+
+  displaySuccessMessage(): void {
+    this.responseMessage = 'Successfully updated';
+
+    setTimeout(() => {
+      this.responseMessage = '';
+    }, 5000);
   }
 
   private isEditingMode(): boolean {

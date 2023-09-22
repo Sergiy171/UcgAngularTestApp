@@ -3,18 +3,20 @@
 <div class="user-list-container">
     <h3>Users</h3>
     <button class="cursor-pointer" routerLink="/user/null">Create user</button>
-    <div class="user-row user-header-row">
-        <div class="user-info-column user-name">Username</div>
-        <div class="user-info-column first-name">First Name</div>
-        <div class="user-info-column last-name">Last Name</div>
-        <div class="user-info-column email">Email</div>
-        <div class="user-info-column user-type">Type</div>
-    </div>
-    <div class="user-row link" *ngFor="let user of users" routerLink="/user/{{user.id}}">
-        <div class="user-info-column user-name">{{ user.userName }}</div>
-        <div class="user-info-column first-name">{{ user.firstName }}</div>
-        <div class="user-info-column last-name">{{ user.lastName }}</div>
-        <div class="user-info-column email">{{ user.email }}</div>
-        <div class="user-info-column user-type">{{ user.userType }}</div>
-    </div>
+    <table class="table table-striped" cellspacing="0">
+        <tr class="user-row user-header-row">
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Type</th>
+        </tr>
+        <tr class="user-row cursor-pointer" *ngFor="let user of users" routerLink="/user/{{user.id}}">
+          <td>{{user.userName}}</td>
+          <td>{{user.firstName}}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.userType}}</td>
+        </tr>
+    </table>
 </div>

@@ -1,16 +1,39 @@
+$table-border-color: lightgrey;
+$table-row-background-color: #e6e6e6;
+$table-row-border-color: white;
+
 .user-list-container {
+
     .user-row {
-        width: 100%;
+        border: 1px solid $table-row-border-color;
+        border-radius: 5px;
+    }
 
-        &.user-header-row {
-            border: 1px solid blue;
-        }
+    table {
+        padding: 5px;
+        border: 1px solid $table-border-color;
+        border-radius: 5px;
+        
+        tr {
 
-        .user-info-column {
-            display: inline-block;
-            position: relative;
-            max-width: 20%;
-            padding-right: 10px;
+            &.user-row {
+                
+                th, td {
+                    padding: 5px;
+                }
+
+                td {
+                    background-color: $table-row-background-color;
+                }
+
+                &.user-header-row {
+                    
+                    th {
+                        color: grey;
+
+                    }
+                }
+            }
         }
     }
 }

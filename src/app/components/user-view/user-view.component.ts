@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserType } from 'src/app/enums/user-type';
@@ -13,6 +14,7 @@ export class UserViewComponent implements OnInit {
   @Input() user: User | null = null;
 
   userTypes = Object.values(UserType);
+  dbUserNames: string[] = [];
   
   constructor(
     private dataService: DataService, 
@@ -22,6 +24,10 @@ export class UserViewComponent implements OnInit {
 
   ngOnInit(): void {
     let userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId') || '');
+
+    this.dataService.getUsers().subscribe((data: any) => {
+      this.dbUserNames = (data as User[]).map((user) => user.userName);
+    });
     
     if (!isNaN(userId)) {
       this.dataService.getUser(userId).subscribe((data: any) => {
@@ -59,5 +65,15 @@ export class UserViewComponent implements OnInit {
     this.dataService.deleteUser(this.user?.id || 1).subscribe((data: any) => {
       this.router.navigateByUrl('/home');
     });
+  }
+
+  checkUniqueUsername(): boolean {
+    return !this.isEditingMode() && this.dbUserNames.includes(this.user?.userName || '');
+  }
+
+  private isEditingMode(): boolean {
+    let userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId') || '');
+
+    return !isNaN(userId);
   }
 }

@@ -2,47 +2,59 @@
 
 <h3>User Details</h3>
 
-<form #myForm="ngForm" *ngIf="user" (ngSubmit)="onSubmitTemplate()">
-    <p>
+<form #userForm="ngForm" *ngIf="user" (ngSubmit)="onSubmitTemplate()">
+    <div class="form-group">
         <label>Username:</label>
-        <input type="text" name="userName"
-            [(ngModel)]="user.userName" required>
-    </p>
-    <p>
+        <input type="text" name="userName" #username="ngModel" [(ngModel)]="user.userName" required>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="form-error form-username-error"> 
+            Username is invalid. Can not be empty and should be unique.
+        </div>
+    </div>
+    <div>
         <label>First Name:</label>
-        <input type="text" name="firstName"
-            [(ngModel)]="user.firstName" required>
-    </p>
-    <p>
+        <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="user.firstName" required>
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="form-error form-username-error"> 
+            First Name is invalid. Can not be empty.
+        </div>
+    </div>
+    <div>
         <label>Last Name:</label>
-        <input type="text" name="lastName"
-            [(ngModel)]="user.lastName" required>
-    </p>
+        <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="user.lastName" required>
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="form-error form-username-error"> 
+            Last Name is invalid. Can not be empty.
+        </div>
+    </div>
     
-    <p>
+    <div>
         <label>Email:</label>
-        <input type="email" name="email" email
-            [(ngModel)]="user.email" required>
-    </p>
-    <p>
+        <input type="email" name="email" #email="ngModel" email [(ngModel)]="user.email" required>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="form-error form-username-error"> 
+            Email is invalid.
+        </div>
+    </div>
+    <div>
         <label>Password:</label>
-        <input type="password" name="password"
-            [(ngModel)]="user.password" required>
-    </p>
-    <!-- <p>
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="form-error form-username-error"> 
+            Password is invalid.
+        </div>
+    </div>
+    <!-- <div>
         <label>Confirm password:</label>
-        <input type="password" name="confirmPassword"
-            [(ngModel)]="user.confirmPassword" required>
-    </p> -->
-    <p>
+        <input type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword" required>
+    </div> -->
+    <div>
         <label>User type:</label>
-        <select name="userType" [(ngModel)]="user.userType">  
+        <select name="userType" #userType="ngModel" [(ngModel)]="user.userType">  
             <option disabled>Select User Type</option>
             <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>  
-        </select>  
-    </p>
+        </select>
+        <div *ngIf="userType.invalid && (userType.dirty || userType.touched)" class="form-error form-username-error"> 
+            User type is invalid.
+        </div>
+    </div>
     <p>
-        <button type="submit" [disabled]="!myForm.valid">Submit</button>
+        <button type="submit" [disabled]="!userForm.valid">Submit</button>
     </p>
 </form>
 

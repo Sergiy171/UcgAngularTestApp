@@ -15,6 +15,7 @@ export class UserViewComponent implements OnInit {
 
   userTypes = Object.values(UserType);
   dbUserNames: string[] = [];
+  formServerErrors: any;
   responseMessage: string = '';
 
   constructor(
@@ -54,10 +55,18 @@ export class UserViewComponent implements OnInit {
     if (!isNaN(routeUserId)) {
       this.dataService.updateUser(this.user as User).subscribe((data: any) => {
         this.displaySuccessMessage();
+      }, err => {
+        if (err instanceof HttpErrorResponse) {
+          this.displayErrorMessage(err.error.message);
+        }
       });
     } else {
       this.dataService.addUser(this.user as User).subscribe((data: any) => {
         this.router.navigateByUrl('/home');
+      }, err => {
+        if (err instanceof HttpErrorResponse) {
+          this.displayErrorMessage(err.error.message);
+        }
       });
     }
   }
@@ -65,6 +74,10 @@ export class UserViewComponent implements OnInit {
   deleteUser() {
     this.dataService.deleteUser(this.user?.id || 1).subscribe((data: any) => {
       this.router.navigateByUrl('/home');
+    }, err => {
+      if (err instanceof HttpErrorResponse) {
+        this.displayErrorMessage(err.error.message);
+      }
     });
   }
 
@@ -77,6 +90,14 @@ export class UserViewComponent implements OnInit {
 
     setTimeout(() => {
       this.responseMessage = '';
+    }, 5000);
+  }
+
+  displayErrorMessage(message: any): void {
+    this.formServerErrors = message;
+
+    setTimeout(() => {
+      this.formServerErrors = '';
     }, 5000);
   }
 

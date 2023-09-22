@@ -27,3 +27,18 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+.response-message {
+    color: white;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 3px;
+
+    &.success-message {
+        background-color: green;
+    }
+
+    &.error-message {
+        background-color: brown;
+    }
+}

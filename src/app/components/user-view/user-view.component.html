@@ -1,8 +1,9 @@
 <h2 class="link" routerLink="/home">&#8592;Home</h2>
 
 <h3 *ngIf="user">{{ user.firstName + ' ' + user.lastName }}</h3>
-<div class="response-message-container" [hidden]="!responseMessage.length">
-    <span class="response-message" *ngIf="responseMessage.length">{{responseMessage}}</span>
+<div class="response-message-container" [hidden]="!responseMessage.length || !formServerErrors?.length">
+    <span class="response-message success-message" *ngIf="responseMessage.length">{{responseMessage}}</span>
+    <span class="response-message error-message" *ngIf="formServerErrors?.length">{{formServerErrors}}</span>
 </div>
 <form #userForm="ngForm" *ngIf="user" (ngSubmit)="onSubmitTemplate()">
     <div class="form-row">

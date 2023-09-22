@@ -4,6 +4,11 @@
     border-radius: 3px;
     padding: 5px 10px;
 
+    &[disabled] {
+        background-color: grey !important;
+        cursor: no-drop;
+    }
+
     &.success-button {
         background-color: dodgerblue;
         color: white;

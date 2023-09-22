@@ -11,15 +11,17 @@
             <label>Username*</label>
         </div>
         <div class="value-column">
-            <input type="text" name="userName" #username="ngModel" [(ngModel)]="user.userName" required>
+            <input type="text" name="userName" #username="ngModel"
+                [(ngModel)]="user.userName" required
+                (blur)="checkUniqueUsername(username)">
         </div>
         <div class="errors-row">
-            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="form-error form-username-error"> 
-                Username is invalid. Can not be empty and should be unique.
+            <div *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['required']" class="form-error form-username-error"> 
+                Username is invalid. Can not be empty.
             </div>
-            <!-- <div *ngIf="(username.dirty || username.touched) && checkUniqueUsername()" class="form-error form-username-error"> 
+            <div *ngIf="(username.dirty || username.touched) && username.errors?.['duplicated_name']" class="form-error form-username-error"> 
                 Username is invalid. Should be unique.
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="form-row">

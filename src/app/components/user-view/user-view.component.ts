@@ -15,6 +15,7 @@ export class UserViewComponent implements OnInit {
 
   userTypes = Object.values(UserType);
   dbUserNames: string[] = [];
+  initialUserName: string = '';
   formServerErrors: any;
   responseMessage: string = '';
 
@@ -28,12 +29,13 @@ export class UserViewComponent implements OnInit {
     let userId = parseInt(this.activatedRoute.snapshot.paramMap.get('userId') || '');
 
     this.dataService.getUsers().subscribe((data: any) => {
-      this.dbUserNames = (data as User[]).map((user) => user.userName);
+      this.dbUserNames = (data as User[]).map((user) => user.userName);;
     });
 
     if (!isNaN(userId)) {
       this.dataService.getUser(userId).subscribe((data: any) => {
         this.user = data as User;
+        this.initialUserName = this.user.userName;
       });
     }
     else {
@@ -81,8 +83,18 @@ export class UserViewComponent implements OnInit {
     });
   }
 
-  checkUniqueUsername(): boolean {
-    return !this.isEditingMode() && this.dbUserNames.includes(this.user?.userName || '');
+  checkUniqueUsername(userNameField: any) {
+    if (this.wasUserNameChanged() && !this.isUniqueUsername()) {
+      userNameField?.control?.setErrors({"duplicated_name": true});
+    }
+  }
+
+  private isUniqueUsername(): boolean {
+    return !this.dbUserNames.includes(this.user?.userName || '');
+  }
+
+  private wasUserNameChanged(): boolean {
+    return this.initialUserName !== this.user?.userName;
   }
 
   displaySuccessMessage(): void {
